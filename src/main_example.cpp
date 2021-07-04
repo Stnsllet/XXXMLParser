@@ -39,8 +39,6 @@ int main()
     for (auto& node : battle_nodes) {
         std::cout << node.getTagName() << "\n";
     }
-    setlocale(LC_ALL, "Japanese");
-
     //example.4 XSLT with params;
     XMLParser calltrans;
     calltrans.loadXMLFile("xml/example3.xml");
@@ -48,7 +46,28 @@ int main()
     std::map<std::string, std::string> xslt_param;
     xslt_param["_temp_wep"] = "Excalibur";
     calltrans.trans(xsl_filepath, xslt_param);
-    std::cout << "\n\n" << calltrans.getAllXML() << "\n";
+    std::cout << "\n" << calltrans.getAllXML() << "\n";
+
+    /* Output
+        Hell World!
+        lyra:Step 1, Try not to be too self-conscious.
+        lyra:2, Shift your weight into your haunches.
+        lyra:3, Give a leap into the air and
+        lyra:4, Just forget your parents are both dead!
+        Greet<Houdy!!
+        ToString:<Greet>Houdy!!</Greet>
+        Gold
+        Gold
+        Gold
+        Range
+        BraveRate
+
+        <Event>
+                <Paty army="friend" dir="0.8" x="1267" y="909">
+        <Member job="swdman" pason="ruuva" wep="Excalibur"/>
+        </Paty>
+        </Event>
+    */
 
     XalanTransformer::terminate();
     XMLPlatformUtils::Terminate();

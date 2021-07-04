@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<System name="Millennium Legend" noex="0" windowlock="1" mirror="0">
+	<Display scale="1.2" angle="30.0" fisheye="40.0" backcolor="0xffdfefff">
+		<BillBord>
+			<Emissive a="1" r="1" g="1" b="1"/>
+		</BillBord>
+	</Display>
+	<GameData money="M" maxpaty="10" maxmember="12" maxstock="300" empprice="1000" lock=""/>
+
+	<Battle nextexp="40" combo="0.01" soul="0.3" skilllev="4" minscale="0.5" maxscale="1.5" patymove="0">
+		<Money name="user" val="150"/>
+		<Money name="enemy" val="50"/>
+		<Money name="neutral" val="50"/>
+		<Range batin="200" batkeep="300" escape="192" runmax="256" formation="34" tactics="210"/>
+		<BraveRate up="0.5" down="-1.5" dleader="-40"/>
+	</Battle>
+
+	<Window msgwait="500">
+		<File path="Tex/Window/window_main.png"/>
+		<File path="Tex/Window/window_hard.png"/>
+		<File path="Tex/Window/window_none.png"/>
+	</Window>
+
+	<World speed="700" main="ruuva" charascale="1.5"
+		movingzoom="0.7" maxzoom="0.7" minzoom="0.2"/>
+	<Item wepon="1/2/3/4/5/6/7/8" pow="30/31/32/33/34/35/36"/>
+</System>

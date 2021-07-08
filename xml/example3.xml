@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <CallTrans path="xml/mini_xslt.xsl">
-	<Chara name="ruuva" x="1267" y="909" dir="0.8"/>
+		
+	<Chara name="saあｚｘｃaa" x="1267" y="909" dir="0.8"/>
+
+
+	<Chara name="ruuv" x="1267" y="909" dir="0.8"/>
 </CallTrans>

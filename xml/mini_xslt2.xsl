@@ -12,14 +12,10 @@
 	</xsl:element>
 </xsl:template>
 
-<xsl:template match="*">
-	<xsl:copy-of select="."/>
-</xsl:template>
-
-<xsl:template match="Chara">
+<xsl:template match="Chara2">
 	<xsl:element name="Paty">
 		<xsl:if test="@army"><xsl:attribute name="army"><xsl:value-of select="@army"/></xsl:attribute></xsl:if>
-		<xsl:if test="not(@army)"><xsl:attribute name="army">friend</xsl:attribute></xsl:if>
+		<xsl:if test="not(@army)"><xsl:attribute name="army">enemy</xsl:attribute></xsl:if>
 		<xsl:attribute name="x"><xsl:value-of select="@x"/></xsl:attribute>
 		<xsl:attribute name="y"><xsl:value-of select="@y"/></xsl:attribute>
 		<xsl:attribute name="dir"><xsl:value-of select="@dir"/></xsl:attribute>
@@ -33,6 +29,8 @@
 	</xsl:element>
 </xsl:template>
 
-
+<xsl:template match="*">
+	<xsl:copy-of select="."/>
+</xsl:template>
 
 </xsl:stylesheet>

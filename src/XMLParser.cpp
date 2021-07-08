@@ -1,4 +1,5 @@
 #include "XMLParser.h"
+#include <regex>
 
 XMLParser::XMLParser() {
 	m_node = nullptr;
@@ -217,31 +218,4 @@ unsigned int XMLParser::attributeHex(std::string tagname) const
 	catch (const std::invalid_argument&) {
 		return 0;
 	}
-}
-
-// Xslt変換を現在Parserが持つノードで行う
-// paramは<xsl:param name="パラメーターキー"/>にバインドされる
-// paramは無くてもいい
-bool XMLParser::trans(std::string xsl_path, const std::map<std::string, std::string>& params) {
-	MemBufInputSource node_xml((const XMLByte*)getAllXML().c_str(), getAllXML().length(), "memory_buffer");
-	// 変換
-	std::stringstream stream;
-	XalanTransformer transformer;
-	std::stringstream theXMLStream(getAllXML().c_str(), strlen(getAllXML().c_str()));
-	XSLTInputSource inputSource(&theXMLStream);
-	for (const auto& param : params) {
-		std::string valstr = "'" + param.second + "'";
-		transformer.setStylesheetParam(param.first.c_str(), valstr.c_str());
-	}
-	const XalanCompiledStylesheet* theCompiledStylesheet;
-	transformer.compileStylesheet(xsl_path.c_str(), theCompiledStylesheet);
-	transformer.transform(&theXMLStream, theCompiledStylesheet, stream);
-	stream << '\0';
-	// アウトプット
-	std::string buffer = stream.str();
-	MemBufInputSource source((const XMLByte*)buffer.c_str(), buffer.length(), "memory_buffer");
-	m_parser->parse(source);
-	m_document = m_parser->getDocument();
-	m_node = m_document->getFirstChild();
-	return true;
 }

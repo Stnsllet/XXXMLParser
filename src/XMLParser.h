@@ -7,10 +7,13 @@
 #include <xercesc/dom/DOMElement.hpp>
 #include <xercesc/dom/DOMNode.hpp>
 #include <xercesc/dom/DOMText.hpp>
+#include <xalanc/XPath/Function.hpp>
+#include <xalanc/XPath/XObjectFactory.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <xercesc/framework/MemBufInputSource.hpp>
 #include <xercesc/framework/MemBufFormatTarget.hpp>
 #include <xalanc/XalanTransformer/XalanTransformer.hpp>
+
 
 using namespace xercesc;
 using namespace xalanc;
@@ -72,8 +75,22 @@ public:
 
 	bool queryByTag(std::list<XMLParser>& output, std::string tagname="*") const;
 	bool queryByTagOnce(XMLParser& output, std::string tagname) const;
-
-	bool trans(std::string xsl_path, const std::map<std::string, std::string>& params = std::map<std::string, std::string>());
 };
 
 typedef std::list<XMLParser> XMLList;
+
+// impl XSLTranser.cpp
+class XSLTranser
+{
+public:
+	XSLTranser();
+	bool trans(
+		XMLParser& xml,
+		std::string xsl_path,
+		const std::map<std::string, std::string>& params = std::map<std::string, std::string>()
+	);
+
+private:
+	XalanTransformer transformer;
+};
+
